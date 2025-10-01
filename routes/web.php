@@ -47,7 +47,6 @@ Route::middleware('check1')->group(function () {
     });
 
     Route::view('/home', 'home');
-    Route::view('user-form', 'user-form');
 });
 
 
@@ -64,8 +63,27 @@ Route::middleware('check1')->group(function () {
 Route::get('user', [UserController::class, 'getUser']);
 Route::get('user/{name}', [UserController::class, 'getUserName']);
 Route::get('admin/', [UserController::class, 'adminLogin']);
+
+// Route methods example
+Route::view('user-form', 'user-form');
 Route::post('adduser/', [UserController::class, 'addUser']);
+Route::get('logout/', [UserController::class, 'logout']);
+// Route::put('adduser/', [UserController::class, 'put']);
+// Route::delete('adduser/', [UserController::class, 'delete']);
+// Route::get('students/', [StudentController::class, 'getStudents']);
 
 
-Route::get('students/', [StudentController::class, 'getStudents']);
+
+// any method using
+// Route::any('adduser/', [UserController::class, 'any']);
+
+
+// match method using
+// Route::match(['post', 'get'], '/adduser', [UserController::class, 'groupOne']);
+// Route::match(['put', 'delete'], '/adduser', [UserController::class, 'groupTwo']);
+
+
+// for session practice
+Route::view('profile', 'profile');
+
 
