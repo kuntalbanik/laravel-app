@@ -66,5 +66,6 @@ Route::get('user/{name}', [UserController::class, 'getUserName']);
 Route::get('admin/', [UserController::class, 'adminLogin']);
 Route::post('adduser/', [UserController::class, 'addUser']);
 
+
 Route::get('students/', [StudentController::class, 'getStudents']);
 
