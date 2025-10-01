@@ -1,13 +1,39 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AgeCheck;
+use App\Http\Middleware\CountryCheck;
 
-// Static views
+
+// Static views start
+
+
+// direct use middleware on route with group middleware
+// e.g. ->middleware('check1')
+
 Route::get('/', function () {
     return view('welcome');
 })->middleware('check1');
 
+
+
+// direct use middleware on route e.g. ->middleware(AgeCheck::class)
+
+// Route::get('/', function () {
+//     return view('welcome');
+// })->middleware(AgeCheck::class);
+
+
+
+
+// direct use middleware on route with multiple middlewares
+// e.g. ->middleware([AgeCheck::class, CountryCheck::class])
+
+// Route::get('/', function () {
+//     return view('welcome');
+// })->middleware([AgeCheck::class, CountryCheck::class]);
 
 
 
@@ -39,3 +65,6 @@ Route::get('user', [UserController::class, 'getUser']);
 Route::get('user/{name}', [UserController::class, 'getUserName']);
 Route::get('admin/', [UserController::class, 'adminLogin']);
 Route::post('adduser/', [UserController::class, 'addUser']);
+
+Route::get('students/', [StudentController::class, 'getStudents']);
+

@@ -3,15 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+
 
 class UserController extends Controller
 {
     //
+
+
+    // old getUser() function
+    // function getUser(){
+    //     // return "John Millar";
+    //     return view('user');
+    // }
+
+    // new getUser() function to connect database manually
     function getUser(){
-        // return "John Millar";
-        return view('user');
+
+        // for manual query run without using model
+        $users = DB::select('select * from users');
+        return view('user',['users'=>$users]);
     }
+
+
+
+
     function getUserName($name){
         // return "Hi ". $name;
         $users = ['Ram', 'Shyam', 'Roni'];
