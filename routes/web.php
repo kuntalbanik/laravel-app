@@ -87,3 +87,7 @@ Route::get('logout/', [UserController::class, 'logout']);
 Route::view('profile', 'profile');
 
 
+
+// Upload file view
+Route::view('upload', 'upload');
+Route::post('upload', [UserController::class, 'upload']);

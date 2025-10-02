@@ -54,14 +54,18 @@ class UserController extends Controller
         // only print array value
         // print_r($request->skill);
 
+        
         // store data in session
-        // $session_data = $request->input('username');
         $request->session()->put('username', $request->input('username'));
-        // return $request;
-        // echo $session_data;
-
+        
         // check session data
         // echo session('username');
+        
+        
+        // store date to flash message
+        $request->session()->flash('message', "User has been added successfully");
+
+
 
         return redirect('profile');
     }
@@ -72,7 +76,6 @@ class UserController extends Controller
         session()->pull('username');
         return redirect('profile');
     }
-
 
 
 
@@ -103,6 +106,54 @@ class UserController extends Controller
     }
     function groupTwo(){
         echo "Match method called group two";
+    }
+
+
+
+    // File upload function
+    function upload(Request $request){
+        // 
+        // Before access uploaded file in project
+        // Enter the command first from command prompt
+        // 
+        // php artisan storage:link
+        // 
+        // and update config/filesystems.php
+        // 
+        
+        // 'local' => [
+        //     'driver' => 'local',
+        //     'root' => storage_path('app'),
+        //     // 'serve' => true,
+        //     // 'throw' => false,
+        //     // 'report' => false,
+        // ],
+
+        // Automatic file name
+        // 
+        $path = $request->file('file')->store('public');
+        $fileNameArray = explode("/", $path);
+        $fileName = $fileNameArray[1];
+
+
+
+
+        // Custom file name
+        // 
+        // $file = $request->file('file');
+        // $originalName = $file->getClientOriginalName();
+        
+        // $file->storeAs('public', $originalName);
+        
+        // $fileNameArray = explode("/", $originalName);
+
+        // $fileName = $fileNameArray[0];
+
+
+
+        
+        // return $fileNameArray;
+        return view('profile', ['filepath'=>$fileName]);
     }
 
 }
