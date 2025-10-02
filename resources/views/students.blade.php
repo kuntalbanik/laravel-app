@@ -1,3 +1,4 @@
+@include('common.header')
 <div>
     User Id : {{ $response_data->userId }}
     <br>

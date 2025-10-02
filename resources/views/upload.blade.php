@@ -1,3 +1,4 @@
+@include('common.header')
 <div>
     <h1>Upload File</h1>
     <form action="" method="post" enctype="multipart/form-data">

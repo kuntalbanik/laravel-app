@@ -27,8 +27,7 @@
     <body >
         @include('common.header')
         <h1>Hello Laravel</h1>
-        <a href="/home">Home</a>
-        <a href="/about/john">About</a>
+
         
         <!-- Pass data to sub views -->
         <!-- includeIf check page exists or not? -->

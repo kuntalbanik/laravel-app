@@ -1,44 +1,58 @@
+@include('common.header')
+
 <div>
 
-<h3>Logged in</h3>
-<p>Profile Page</p>
+    
 
-<!-- Show Flash message -->
-{{ session('message') }}
-
-
-<!-- Keep Flash session data by using this  within curly braces -->
- <!-- session()->keep(['message']) -->
+    <!-- Show Flash message -->
+    {{ session('message') }}
 
 
+    <!-- Keep Flash session data by using this  within curly braces -->
+    <!-- session()->keep(['message']) -->
 
-@if(session('name'))
-<h2>Welcome, {{ session('name') }}</h2>
-@else
+
+    <h3>Session Part practice</h3>
+    <br>
+    @if(session('name'))
+    <h2>Welcome, {{ session('name') }}</h2>
+    @else
     <p>User only from session not found</p>
     <a href="login">Login</a>
-@endif
+    @endif
 
-<br>
-<a href="logout">Logout - Session</a>
-<br><br>
+    <br>
+    <a href="logout">Logout - Session</a>
+    <br>
+    <br>
 
 
-@if(session('email'))
-<h2>Welcome, {{ session('email') }}</h2>
-@else
+
+    <!-- DB Login part -->
+    <hr>
+
+    @if (Auth::check())
+        <h3>Logged in</h3>
+        <p>Profile Page</p>
+    @endif
+
+
+
+    @if(session('email'))
+    <h2>Welcome, {{ session('email') }}</h2>
+    @else
     <p>User from DB not found</p>
     <a href="login">Login</a>
-@endif
+    @endif
 
-<br>
-<a href="logoutprofile">Logout - User DB</a>
+    <br>
+    <a href="logoutprofile">Logout - User DB</a>
 
-<br><br>
+    <br><br>
 
-@isset($filepath)
+    @isset($filepath)
     <img style="width: 400px;" src="{{ url('storage/'.$filepath) }}" alt="Uploaded Image" srcset="">
-@endisset
+    @endisset
 
-<br>
+    <br>
 </div>

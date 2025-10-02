@@ -256,6 +256,15 @@ class UserController extends Controller
 
 
 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
 // Signup registration controller method
 
 // public function register(Request $request)

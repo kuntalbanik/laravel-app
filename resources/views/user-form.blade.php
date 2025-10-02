@@ -1,4 +1,10 @@
 <div>
+    @if (Auth::check())
+        <script>
+            // Redirects the user immediately to the specified URL
+            window.location.href = "{{ url('profile/') }}"; 
+        </script>
+    @endif
     <h1>Add new user</h1>
 
     <form action="adduser" method="post">
