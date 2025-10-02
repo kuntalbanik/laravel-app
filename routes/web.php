@@ -66,8 +66,16 @@ Route::get('admin/', [UserController::class, 'adminLogin']);
 
 // Route methods example
 Route::view('user-form', 'user-form');
+// Route::view('adduser/', [UserController::class, 'addUser']);
+
+Route::get('adduser/', function () {
+    return redirect('user-form');
+});
+
 Route::post('adduser/', [UserController::class, 'addUser']);
-Route::get('logout/', [UserController::class, 'logout']);
+Route::view('login/', 'login')->name('login');
+Route::post('login/', [UserController::class, 'login']);
+Route::get('logoutprofile/', [UserController::class, 'logoutProfile']);
 // Route::put('adduser/', [UserController::class, 'put']);
 // Route::delete('adduser/', [UserController::class, 'delete']);
 // Route::get('students/', [StudentController::class, 'getStudents']);
@@ -84,7 +92,14 @@ Route::get('logout/', [UserController::class, 'logout']);
 
 
 // for session practice
-Route::view('profile', 'profile');
+// Route::view('profile', 'profile');
+// Route protected by authentication, using middleware
+Route::get('/profile', function () {
+    return view('profile');
+})->middleware('auth');
+
+
+Route::get('logout/', [UserController::class, 'logout']);
 
 
 

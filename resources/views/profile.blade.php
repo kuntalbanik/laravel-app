@@ -12,23 +12,33 @@
 
 
 
-@if(session('username'))
-<h2>Welcome, {{ session('username') }}</h2>
+@if(session('name'))
+<h2>Welcome, {{ session('name') }}</h2>
 @else
-    <p>User not found</p>
-    <a href="user-form">Login</a>
+    <p>User only from session not found</p>
+    <a href="login">Login</a>
 @endif
 
+<br>
+<a href="logout">Logout - Session</a>
 <br><br>
 
 
-
-@if($filepath)
-<img style="width: 400px;" src="{{ url('storage/'.$filepath) }}" alt="Uploaded Image" srcset="">
-
-
+@if(session('email'))
+<h2>Welcome, {{ session('email') }}</h2>
+@else
+    <p>User from DB not found</p>
+    <a href="login">Login</a>
 @endif
 
-<br><br><br>
-<a href="logout">Logout</a>
+<br>
+<a href="logoutprofile">Logout - User DB</a>
+
+<br><br>
+
+@isset($filepath)
+    <img style="width: 400px;" src="{{ url('storage/'.$filepath) }}" alt="Uploaded Image" srcset="">
+@endisset
+
+<br>
 </div>

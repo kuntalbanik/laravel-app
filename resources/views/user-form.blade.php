@@ -11,7 +11,7 @@
 
         @csrf
         <div class="input-wrapper">
-            <input type="text" name="username" id="" placeholder="Enter username">
+            <input type="text" name="name" id="" placeholder="Enter username">
         </div>
         <div class="input-wrapper">
             <input type="password" name="password" id="" placeholder="Enter password">
@@ -20,9 +20,13 @@
             <input type="email" name="email" id="" placeholder="Enter email">
         </div>
 
-        <div>
+        
+        
+        
+        
+        <!-- skill[]  Use to get all values as array -->
+        <!-- <div>
             <h5>User skill :</h5>
-            <!-- skill[]  Use to get all values as array -->
             <input type="checkbox" name="skill[]" value="PHP" id="php">
             <label for="php">PHP</label>
             <input type="checkbox" name="skill[]" value="Node" id="node">
@@ -55,7 +59,7 @@
             
             <h5> Age: </h5>
             <input type="range" name="age" id="age" min="18" max="60">
-        </div>
+        </div> -->
 
 
         <div class="input-wrapper">
