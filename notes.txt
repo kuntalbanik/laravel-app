@@ -1,0 +1,99 @@
+e.g. server directory name  'lvl'  under public_html
+
+
+cd public_html/lvl/
+ln -s /public/index.php .
+
+
+
+.env file updates
+-----------------
+APP_URL=https://domain.com/lvl
+
+
+DB_DATABASE=u386620908_laravel
+DB_USERNAME=u386620908_root
+DB_PASSWORD=u+dJ^WG3E1x/
+
+
+
+
+static link will be like this
+-------------
+<div style="background-color: rgba(255, 187, 255, 1);">
+    <h1>Header File</h1>
+    <a href="/lvl/home/?age=18&country=india">Home</a>
+    <a href="/lvl/about/john/?age=18&country=india">About</a>
+    @if (Auth::check())
+        <a href="/lvl/profile">Profile</a>
+        <a href="/lvl/students">Students data</a>
+        <a href="/lvl/upload">Upload File</a>
+        <a href="/lvl/logoutprofile">Logout</a>
+    @else
+        <a href="/lvl/register">Register</a>
+        <a href="/lvl/login">Login</a>
+    @endif
+</div>
+
+
+
+
+
+Working .htaccess file - for directory  public_html/lvl
+--------------------------------------------------------
+
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Handle X-XSRF-Token Header
+    RewriteCond %{HTTP:x-xsrf-token} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+============================================================
+
+
+.htaccess - old sample
+---------------------------------
+
+<IfModule mod_rewrite.c>
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{REQUEST_URI} !^/public/ 
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+
+
+RewriteRule ^(.*)$ /public/$1 
+#RewriteRule ^ index.php [L]
+RewriteRule ^(/)?$ public/index.php [L] 
+</IfModule>
+
+=====================================
+
+
+
+
+
