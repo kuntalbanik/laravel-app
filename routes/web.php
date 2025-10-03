@@ -94,7 +94,11 @@ Route::middleware('auth')->group(function () {
         return redirect('register');
     });
     
+
+    Route::post('student-form/addStudent/', [StudentController::class, 'addStudent']);
+    Route::view('student-form/', 'student-form');
     Route::get('students/', [StudentController::class, 'getStudents']);
+    Route::get('students/delete/{id}', [StudentController::class, 'deleteStudent']);
     
     Route::get('user', [UserController::class, 'getUser']);
     

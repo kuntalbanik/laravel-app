@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Http;
 class StudentController extends Controller
 {
     //
-    
+
     function getStudents()
     {
 
@@ -72,13 +72,13 @@ class StudentController extends Controller
         // Delete data from table
         // 
 
-        $out1 = Student::where('name', 'Sam')->delete();
+        // $out1 = Student::where('name', 'Sam')->delete();
 
-        if ($out1) {
-            echo "Data Deleted";
-        } else {
-            echo "Data not exists";
-        }
+        // if ($out1) {
+        //     echo "Data Deleted";
+        // } else {
+        //     echo "Data not exists - From Controller";
+        // }
 
 
 
@@ -87,8 +87,11 @@ class StudentController extends Controller
 
 
         // API call 
-        $response_data = Http::get('https://jsonplaceholder.typicode.com/posts/1');
-        $response_data = $response_data->body();
+        // $response_data = Http::get('https://jsonplaceholder.typicode.com/posts/1');
+        // $response_data = $response_data->body();
+
+
+
 
 
         // --------------------------------------------------
@@ -97,7 +100,7 @@ class StudentController extends Controller
         //
 
         // get all data from table  'users'
-        $result = DB::table('users')->get();
+        $users_data = DB::table('users')->get();
 
         // get output where batch year is : 2018
         // $result = DB::table('users')->where('name', 'Kuntal')->get();
@@ -157,8 +160,47 @@ class StudentController extends Controller
 
 
 
+        //  $response_data for API call output
+        // return view('students', ['students' => $students, 'response_data' => json_decode($response_data), 'result' => $result]);
 
-        return view('students', ['students' => $students, 'response_data' => json_decode($response_data), 'result' => $result]);
+
+
+        return view('students', ['students' => $students, 'users' => $users_data]);
         // json_decode()  return response to json type
+    }
+
+
+    // Delete student function to delete data from DB
+
+    function deleteStudent($id)
+    {
+        $isDeleted = Student::destroy($id);
+        if ($isDeleted) {
+            // echo "`$id` Deleted";
+            return redirect('students');
+        }
+    }
+
+
+
+    // Add student function to save data in DB
+
+    function addStudent(Request $request)
+    {
+
+        $outputResult = Student::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'batch_year' => $request->batch,
+        ]);
+
+        if ($outputResult) {
+            // echo $outputResult;
+            // echo "Data inserted";
+            return redirect('students');
+        } else {
+            echo "Data not inserted";
+            // echo "Student add called";
+        }
     }
 }

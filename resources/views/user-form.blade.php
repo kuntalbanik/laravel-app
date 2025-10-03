@@ -1,3 +1,4 @@
+@include('common.header')
 <div>
     @if (Auth::check())
         <script>

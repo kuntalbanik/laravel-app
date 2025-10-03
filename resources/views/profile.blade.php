@@ -46,7 +46,8 @@
     @endif
 
     <br>
-    <a href="logoutprofile">Logout - User DB</a>
+    <button id="logout">Logout - User DB</button>
+    <!-- <a href="logoutprofile">Logout - User DB</a> -->
 
     <br><br>
 
@@ -56,3 +57,10 @@
 
     <br>
 </div>
+
+<script>
+    const btnLogout = document.getElementById('logout');
+    btnLogout.onclick = function() {
+        window.location.href = "{{ url('logoutprofile/') }}"; 
+    }
+</script>
